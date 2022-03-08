@@ -12,11 +12,6 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
-
-    public function create()
-    {
-        return view('admin.register');
-    }
     
     public function list()
     {

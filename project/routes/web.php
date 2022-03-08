@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QAManagerController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -34,17 +35,14 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Route::get('/HomeAdmin', [AdminController::class, 'index'])->name('dashboard');
+Route::get('/HomeQaManager', [QaManagerController::class, 'index'])->name('dashboard');
 Route::get('/dashboard',function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/HomeAdmin/CreateAccount', [AdminController::class, 'create'])->name('CreateAccount');
-Route::get('/register',function () {
-    return redirect()->route('register');
+Route::get('/HomeQaManager/CreateCategory', [QaManagerController::class, 'create'])->name('CreateCategory');
+Route::get('/CreateCategory',function () {
+    return redirect()->route('CreateCategory');
 });
 
-Route::get('/HomeAdmin/listAccount', [AdminController::class, 'list'])->name('ListAccount');
-Route::get('/listAccount',function () {
-    return redirect()->route('listAccount');
-});
+
