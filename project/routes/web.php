@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes(['register' => false, 'reset' => false]);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', function () {
@@ -33,19 +33,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'ideas'], function () {
         Route::get('/', [IdeaController::class,'index'])->name('ideas.index');
     });
+    
+    
+    Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
+        Route::get('/', [AdminController::class,'index'])->name('admin.index');
+        Route::get('/register', [AdminController::class, 'create'])->name('admin.accounts.register');
+        Route::get('/accounts/list', [AdminController::class, 'list'])->name('admin.accounts.list');
+    });
 });
-
-Route::get('/HomeAdmin', [AdminController::class, 'index'])->name('dashboard');
-Route::get('/dashboard',function () {
-    return redirect()->route('dashboard');
-});
-
-Route::get('/HomeAdmin/CreateAccount', [AdminController::class, 'create'])->name('CreateAccount');
-Route::get('/register',function () {
-    return redirect()->route('register');
-});
-
-Route::get('/HomeAdmin/listAccount/index', [AdminController::class, 'list'])->name('ListAccount');
-
-Route::get('/HomeAdmin/listAccount/EditAccount', [AdminController::class, 'edit'])->name('EditAccount');
 
