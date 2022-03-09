@@ -66,7 +66,9 @@
             <td scope="row">Admin</td>
             <td scope="row">
               <button type="button" class="btn btn-outline-info rounded-pill">Details</button>
+              <a href="{{ route('EditAccount')}}" class="nav-link">
               <button type="button" class="btn btn-outline-light rounded-pill">Edit</button>
+              </a>
               <button type="button" class="btn btn-outline-warning rounded-pill">Delete</button>
             </td>
           </tr>

@@ -47,3 +47,5 @@ Route::get('/register',function () {
 
 Route::get('/HomeAdmin/listAccount/index', [AdminController::class, 'list'])->name('ListAccount');
 
+Route::get('/HomeAdmin/listAccount/EditAccount', [AdminController::class, 'edit'])->name('EditAccount');
+
