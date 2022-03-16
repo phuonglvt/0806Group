@@ -21,10 +21,11 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <form class="container-fluid" action="/Report" method ="post" >
+        @csrf
         <!-- Small boxes (Stat box) -->
         <div class="dropdown">
-            <select name="" id="" class="dropdown">
+            <select name="department" id="" class="dropdown">
             <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            Department
             </button>-->
@@ -32,7 +33,7 @@
                 <option value="{{$department -> name}}">{{$department -> name}}</option>
                 @endforeach
             </select>  
-            <select name="" id="" class="dropdown">
+            <select name="user" id="" class="dropdown">
                 @foreach($users as $User)
                 <option value="{{$User -> name}}">{{$User -> name}}</option>
                 @endforeach
@@ -58,7 +59,7 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <!-- checkbox -->
-                    <input type="checkbox" value="" name="">
+                    <input type="checkbox" value="" name="reason">
                     <!-- todo text -->
                     <span class="text">Inappropriate content.</span>
                     <!-- Emphasis label -->
@@ -72,7 +73,7 @@
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="">
+                    <input type="checkbox" value="" name="reason">
                     <span class="text">Idea using words incorrectly.</span>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
@@ -84,7 +85,7 @@
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="">
+                    <input type="checkbox" value="" name="reason">
                     <span class="text">Spam comments and abuse.</span>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
@@ -96,7 +97,7 @@
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="">
+                    <input type="checkbox" value="" name="reason">
                     <span class="text">Plagiarize ideas, use other people's ideas.</span>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
@@ -108,7 +109,7 @@
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="">
+                    <input type="checkbox" value="" name="reason">
                     <span class="text">Others</span>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
@@ -127,7 +128,7 @@
               <div class="card-body">
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
-                  <textarea class="chart tab-pane active" id="revenue-chart"
+                  <textarea class="chart tab-pane active" id="revenue-chart " name="reason"
                        style="position: relative; height: 300px; width: 920px"></textarea>
                   <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
                 </div>
@@ -137,11 +138,11 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <button type="button" class="btn btn-info float-right">Send</button>
+                <button type="submit" value ="submit" class="btn btn-info float-right">Send</button>
               </div>
           </div>
             <!-- /.card -->
-      </div><!-- /.container-fluid -->
+      </form><!-- /.container-fluid -->
       
     </section>
     <!-- /.content -->

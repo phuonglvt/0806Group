@@ -44,5 +44,12 @@ Route::get('/HomeQaManager/sendReport', [QaManagerController::class, 'sendReport
 Route::get('/sendReport',function () {
     return redirect()->route('sendReport');
 });
+Route::get('/Report', function(){
+    return view('sendReport');
+});
+Route::post('/Report', function(){
+    $data = request(['department','user','reason']);
+    return $data;
+});
 
 
