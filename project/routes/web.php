@@ -40,9 +40,9 @@ Route::get('/dashboard',function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/HomeQaManager/CreateCategory', [QaManagerController::class, 'create'])->name('CreateCategory');
-Route::get('/CreateCategory',function () {
-    return redirect()->route('CreateCategory');
+Route::get('/HomeQaManager/sendReport', [QaManagerController::class, 'sendReport'])->name('sendReport');
+Route::get('/sendReport',function () {
+    return redirect()->route('sendReport');
 });
 
 
