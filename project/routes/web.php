@@ -49,7 +49,10 @@ Route::get('/Report', function(){
 });
 Route::post('/Report', function(){
     $data = request(['department','user','reason']);
-    return $data;
+    \Illuminate\Support\Facades\Mail::to('phungdat020501@gmail.com')
+    -> send(new \App\Mail\Report($data));
+    return redirect ('/Report')
+    -> with('flash', 'Report sent successfully');
 });
 
 

@@ -59,7 +59,7 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <!-- checkbox -->
-                    <input type="checkbox" value="" name="reason">
+                    <input type="checkbox" value="" name="checkbox1">
                     <!-- todo text -->
                     <span class="text">Inappropriate content.</span>
                     <!-- Emphasis label -->
