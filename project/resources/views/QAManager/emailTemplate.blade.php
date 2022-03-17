@@ -15,5 +15,6 @@
     <br>
     <h2>Report reasons</h2>
     {{$dataReceived['reason']}}
+
 </body>
 </html>

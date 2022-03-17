@@ -31,4 +31,5 @@ class Report extends Mailable
     {
         return $this->view('\QAManager\emailTemplate');
     }
+
 }

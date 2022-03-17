@@ -18,6 +18,6 @@ class QaManagerController extends Controller
     {
         $users = User::all();
         $departments = Department::all();
-        return view('QAManager.sendReport', compact('departments'), compact('users'));
+        return view('QAManager.sendReport', compact(['departments','users']));
     }
 }

@@ -45,13 +45,13 @@ Route::get('/sendReport',function () {
     return redirect()->route('sendReport');
 });
 Route::get('/Report', function(){
-    return view('sendReport');
+    return view('/QAManager/sendReport');
 });
 Route::post('/Report', function(){
     $data = request(['department','user','reason']);
     \Illuminate\Support\Facades\Mail::to('phungdat020501@gmail.com')
     -> send(new \App\Mail\Report($data));
-    return redirect ('/Report')
+    return redirect ('/HomeQaManager/sendReport')
     -> with('flash', 'Report sent successfully');
 });
 

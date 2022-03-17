@@ -1,6 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report</title>
+</head>
+<body>
 @extends('layouts.QAManager')
 
 @section('content')
+
 <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -11,7 +21,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard </li>
+              <li class="breadcrumb-item active">Report </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -22,14 +32,11 @@
     <!-- Main content -->
     <section class="content">
       <form class="container-fluid" action="/Report" method ="post" >
-        @csrf
+      @csrf
         <!-- Small boxes (Stat box) -->
         <div class="dropdown">
             <select name="department" id="" class="dropdown">
-            <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Department
-            </button>-->
-                @foreach($departments as $department)
+                @foreach($departments as $department) 
                 <option value="{{$department -> name}}">{{$department -> name}}</option>
                 @endforeach
             </select>  
@@ -50,7 +57,7 @@
                 </h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body" >
                 <ul class="todo-list">
                   <li>
                     <!-- drag handle -->
@@ -59,62 +66,30 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <!-- checkbox -->
-                    <input type="checkbox" value="" name="checkbox1">
+                    <input type="checkbox" value="Inappropriate content." name="checkbox"> Inappropriate content
                     <!-- todo text -->
-                    <span class="text">Inappropriate content.</span>
-                    <!-- Emphasis label -->
-                    <div class="tools">
-                      <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
                   </li>
                   <li>
                     <span class="handle">
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="reason">
-                    <span class="text">Idea using words incorrectly.</span>
-                    <div class="tools">
-                      <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
+                    <input type="checkbox" value="Idea using words incorrectly." name="checkbox"> Idea using words incorrectly.
                   </li>
                   <li>
                     <span class="handle">
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="reason">
-                    <span class="text">Spam comments and abuse.</span>
-                    <div class="tools">
-                      <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
+                    <input type="checkbox" value="" name="checkbox">Spam comments and abuse.
                   </li>
                   <li>
                     <span class="handle">
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input type="checkbox" value="" name="reason">
-                    <span class="text">Plagiarize ideas, use other people's ideas.</span>
-                    <div class="tools">
-                      <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                    </span>
-                    <input type="checkbox" value="" name="reason">
-                    <span class="text">Others</span>
-                    <div class="tools">
-                      <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
+                    <input type="checkbox" value="" name="checkbox">Plagiarize ideas, use other people's ideas.
+                   
                   </li>
                 </ul>
                 <div class="text-others">
@@ -149,3 +124,5 @@
     
 
 @endsection
+</body>
+</html>
