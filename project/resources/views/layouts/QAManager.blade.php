@@ -218,6 +218,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('QAManager.missions.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Mission
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('sendReport')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
