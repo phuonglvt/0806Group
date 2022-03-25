@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active">List Mission</li>
                 </ol>
             </div>
@@ -34,7 +34,7 @@
             </a>
         </div>
         <div class="card-body">
-            @include('admin.missions._list')
+            @include('QAManager.missions._list')
         </div>
     </div>
 </div>
@@ -47,7 +47,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('admin.mission.create') }}" method="POST">
+            <form action="{{ route('QAManager.mission.create') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group @error('name') is-invalid @enderror">

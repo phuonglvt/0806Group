@@ -19,7 +19,7 @@ class MissionController extends Controller
     public function index()
     {
         return view(
-            'admin.missions.index',
+            'QAManager.missions.index',
             [
                 'category' => Category::all(),
                 'department' => Department::all(),
