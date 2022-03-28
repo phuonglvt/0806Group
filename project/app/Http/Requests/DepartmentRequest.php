@@ -24,7 +24,7 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-<<<<<<< HEAD
+
             'name' => 'required|string|unique:departments|max:255',
         ];
     }
@@ -36,9 +36,4 @@ class DepartmentRequest extends FormRequest
             'name.unique' => 'The name department is already'
         ];        
     }
-=======
-            'name' => 'required',
-        ];
-    }
->>>>>>> origin/admin
 }
