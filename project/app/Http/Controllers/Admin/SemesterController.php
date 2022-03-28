@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Semester;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\SemesterRequest;
+use App\Http\Requests\UpdateSemesterRequest as UpdateSemester;
 
 class SemesterController extends Controller
 {
@@ -31,6 +33,7 @@ class SemesterController extends Controller
                 return $data->missions->count();
             })
             ->editColumn('action', function ($data) {
+                if (auth()->user()->hasRole('admin')) {
                 return '
                 <a class="btn btn-warning btn-sm rounded-pill" href="'.route("admin.semester.update",$data->id).'"><i class="fa-solid fa-pen-to-square"></i></a>
                 <form method="POST" action="' . route('admin.semester.delete', $data->id) . '" accept-charset="UTF-8" style="display:inline-block">
@@ -39,7 +42,8 @@ class SemesterController extends Controller
                     '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this department ?\')"><i class="fa-solid fa-trash"></i></button>
                 </form>
                 ';
-                
+                }
+                return '';
             })
             ->rawColumns(['action','name'])
             ->setRowAttr([
@@ -57,27 +61,22 @@ class SemesterController extends Controller
         return redirect()->back()->with('flash_message', 'Semester deleted!');
     }
 
-    public function create(Request $request){
+    public function create(SemesterRequest $request){
         //todo: Add create semester request
-        $name = $request->name;
-        $end_day = $request->end_day;
-        Semester::create([
-            'name' => $name,
-            'end_day' => $end_day            
-        ]);
+        Semester::create($request->all());
         //send mail
-        return redirect()->back()->with('flash_message', 'Semester created!');
+        return redirect()->back()->with('success', 'Create Semester Successfully!');
     }
     public function edit($id){
         $itemSemester = Semester::findOrFail($id);
         return view('admin.semester.editSemester',compact('itemSemester'));
     }
-    public function update(Request $request, $id){
+    public function update(UpdateSemester $request, $id){
         $dataSmt = Semester::findOrFail($id);
         // assign information to data variable
         $data = $request -> all();
         $dataSmt->update($data);
         $dataSmt->save();
-        return redirect('admin/semester');
+        return redirect('admin/semester') -> with('success', 'Semester successfully updated');
     }
 }
