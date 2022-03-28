@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Semester extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'end_day',
+    ];
+    
+    public function missions()
+    {
+        return $this->hasMany(Mission::class);
+    }
 }

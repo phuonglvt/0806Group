@@ -1,4 +1,4 @@
-@extends('layouts.QAManager')
+@extends('layouts.admin')
 
 @section('custom-css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /><!-- CSS -->
@@ -14,21 +14,21 @@
             <div class="row mb-2">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">List Department</li>
+                    <li class="breadcrumb-item active">List Category</li>
                 </ol>
             </div>
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-            @endif
+             @endif
         </div>
     </div>
     <div class="card">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">List Department</h6>
+            <h6 class="m-0 font-weight-bold text-primary">List Category</h6>
             <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Create Department
+                Create Category
             </a>
         </div>
         <div class="card-body">

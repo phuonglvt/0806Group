@@ -1,64 +1,68 @@
 @extends('layouts.main')
 
-@section('title','Change password')
+@section('title', 'Change password')
 
 @section('content')
 
-<div class="container-xl px-4 mt-4">
-    <hr class="mt-0 mb-4">
-    <div class="row">
-        <div class="col-xl-4">
-            <!-- Profile picture card-->
-            <div class="card mb-4 mb-xl-0">
-                <div class="card-header">Profile Picture</div>
-                <div class="card-body text-center">
-                    <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                    <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                    <!-- Profile picture upload button-->
-                    <button class="btn btn-success" type="button">Upload new image</button>
-                </div>
+    <div class="container-xl">
+        <div class="row">
+            <div class="col-xl-4">
+                @include('user._avatar');
             </div>
-        </div>
-        <div class="col-xl-8">
-            <!-- Account details card-->
-            <div class="card mb-4">
-                <div class="card-header">Account Details</div>
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="...">
-                        </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                        </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputPhone">Phone number</label>
-                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputRole">Role</label>
-                                <input class="form-control" id="inputRole" type="text" placeholder="Enter your role" value="Staff">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPosition">Position</label>
-                                <input class="form-control" id="inputPosition" type="text" placeholder="Enter your Position" value="Academic">
-                            </div>
-                        </div> 
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Change password</div>
+                    <div class="card-body">
+                        <form action="{{ route('user.updatePassword') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
+                                <label class="small mb-1 fw-bold" for="old-password">* Old password:</label>
+                                <input class="form-control @error('old-password') is-invalid @enderror" id="old-password"
+                                    name="old-password" type="password" placeholder="Enter old password"
+                                    >
+                                @if ($errors->has('old-password'))
+                                    <span>
+                                        @error('old-password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </span>
+                                @endif
                             </div>
-                        </div>
-                        <!-- Save changes button-->
-                        <button class="btn btn-info" type="button">Edit my profile</button>
-                    </form>
+                            <div class="mb-3">
+                                <label class="small mb-1 fw-bold" for="new-password">* New password:</label>
+                                <input class="form-control @error('new-password') is-invalid @enderror" id="new-password"
+                                    name="new-password" type="password" placeholder="Enter new password"
+                                    >
+                                @if ($errors->has('new-password'))
+                                    <span>
+                                        @error('new-password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <label class="small mb-1 fw-bold" for="new-password_confirmation">* Confirm new
+                                    password:</label>
+                                <input class="form-control @error('new-password_confirmation') is-invalid @enderror"
+                                    id="new-password_confirmation" name="new-password_confirmation" type="password"
+                                    placeholder="Enter new password again" >
+                                @if ($errors->has('new-password_confirmation'))
+                                    <span>
+                                        @error('new-password_confirmation')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </span>
+                                @endif
+                            </div>
+                            <!-- Save changes button-->
+                            <button class="btn btn-info d-grid" type="submit">Save</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 @endsection

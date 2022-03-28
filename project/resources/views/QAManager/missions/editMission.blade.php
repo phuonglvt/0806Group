@@ -1,5 +1,6 @@
-@extends('layouts.QAManager')
+@extends('layouts.admin')
 @section('content')
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -12,9 +13,11 @@
         body {
             background-color: #dee9ff;
         }
+
         .registration-form {
             padding: 50px 0;
         }
+
         .registration-form form {
             background-color: #fff;
             max-width: 600px;
@@ -24,6 +27,7 @@
             border-top-right-radius: 30px;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
         }
+
         .registration-form .form-icon {
             text-align: center;
             background-color: #5891ff;
@@ -36,11 +40,13 @@
             margin-bottom: 50px;
             line-height: 100px;
         }
+
         .registration-form .item {
             border-radius: 20px;
             margin-bottom: 25px;
             padding: 10px 20px;
         }
+
         .registration-form .create-account {
             border-radius: 30px;
             padding: 10px 20px;
@@ -51,6 +57,7 @@
             color: white;
             margin-top: 20px;
         }
+
         .registration-form .social-media {
             max-width: 600px;
             background-color: #fff;
@@ -63,10 +70,12 @@
             border-top: 1px solid #dee9ff;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
         }
+
         .registration-form .social-icons {
             margin-top: 30px;
             margin-bottom: 16px;
         }
+
         .registration-form .social-icons a {
             font-size: 23px;
             margin: 0 3px;
@@ -80,14 +89,17 @@
             background-color: #fff;
             line-height: 45px;
         }
+
         .registration-form .social-icons a:hover {
             text-decoration: none;
             opacity: 0.6;
         }
+
         @media (max-width: 576px) {
             .registration-form form {
                 padding: 50px 20px;
             }
+
             .registration-form .form-icon {
                 width: 70px;
                 height: 70px;
@@ -103,7 +115,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Welcome to QA Manager!</h1>
+                    <h1 class="m-0 text-dark">Welcome to Admin!</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -121,44 +133,17 @@
                 <div class="form-icon">
                     <span><i class="icon icon-user"></i></span>
                 </div>
-                <div class="col-lg-10">
-                    <div class="form-group @error('name') is-invalid @enderror">
-                        <label for="name">Mission Name:</label>
-                        <input type="text" class="form-control item" name="name" id="name" placeholder="Full Name" value="{{$mission-> name}}">
-                    </div>
-                    @if ($errors->has('name'))
-                    <span>
-                        @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </span>
-                    @endif
+                <div class="form-group">
+                    <label for="name">Mission Name:</label>
+                    <input type="text" class="form-control item" name="name" id="name" placeholder="Full Name" value="{{$mission-> name}}">
                 </div>
-                <div class="col-lg-10">
-                    <div class="form-group @error('description') is-invalid @enderror">
-                        <label for="description">Description:</label>
-                        <input type="text" name="description" class="form-control" id="description" placeholder="" value="{{$mission-> description}}">
-                        @if ($errors->has('description'))
-                        <span>
-                            @error('description')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </span>
-                        @endif
-                    </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" class="form-control" id="description" placeholder="" value="{{$mission-> description}}">
                 </div>
-                <div class="col-lg-10">
-                    <div class="form-group">
-                        <label for="end_at">End At:</label>
-                        <input type="datetime-local" name="end_at" class="form-control" id="end_at" placeholder="">
-                    </div>
-                    @if ($errors->has('end_at'))
-                    <span>
-                        @error('end_at')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </span>
-                    @endif
+                <div class="form-group">
+                    <label for="end_at">End At:</label>
+                    <input type="datetime-local" name="end_at" class="form-control" id="end_at" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="category">Category:</label>
@@ -194,13 +179,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
 
-<script>
-    @if ($errors->has('name')||$errors->has('description')||$errors->has('end_at'))
-        var delayInMilliseconds = 1000;
-        setTimeout(function() {
-        $("#exampleModal").modal('show');
-        }, delayInMilliseconds);
-    @endif
-</script>
+</html>
 
 @endsection
