@@ -8,7 +8,7 @@
 </head>
 <body>
     
-@extends('layouts.QAManager')
+@extends('layouts.QACo')
 
 @section('content')
 <!-- Content Header (Page header) -->
@@ -99,7 +99,6 @@
           <!-- ./col -->
         </div>
         </div>
-<<<<<<< HEAD:project/resources/views/QAManager/dashboard.blade.php
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
@@ -107,8 +106,3 @@
 @endsection
 </body>
 </html>
-=======
-      </section>
-          
-@endsection
->>>>>>> origin/admin:project/resources/views/admin/dashboard.blade.php

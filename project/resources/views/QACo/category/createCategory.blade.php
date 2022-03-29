@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.QACo')
 @section('content')
 <html lang="en">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

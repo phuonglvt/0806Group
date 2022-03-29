@@ -1,4 +1,4 @@
-@extends('layouts.QAManager')
+@extends('layouts.QACo')
 
 @section('content')
 

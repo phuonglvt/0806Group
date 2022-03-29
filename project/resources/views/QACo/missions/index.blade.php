@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.QACo')
 
 @section('custom-css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /><!-- CSS -->

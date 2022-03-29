@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.QACo')
 @section('content')
 <html lang="en">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -85,8 +85,8 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Category</a></li>
-                        <li class="breadcrumb-item active">Update Account</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.department.index') }}">Department</a></li>
+                        <li class="breadcrumb-item active">Update Department</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -96,19 +96,16 @@
         <div class="contact-image">
             <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="space" />
         </div>
-        <form action="/admin/category/update/{{ $dataCategory->id }}" method="post">
+        <form action="/admin/department/update/{{ $itemDepartment->id }}" method="post">
             @csrf
-            <h3>Create Category</h3>
+            <h3>Edit Department</h3>
             <div class="row">
                 <div class="col-lg-10">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Name Category" class="form-control" value="{{ $dataCategory->name }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="description" placeholder="Description" class="form-control" value="{{ $dataCategory->description}}">
+                        <input type="text" name="name" placeholder="Name Category" class="form-control" value="{{ $itemDepartment->name }}">
                     </div>
                     <div class="center">
-                        <button type="submit" name="btnSubmit" class="btn btn-outline-primary rounded-pill" data-mdb-ripple-color="dark">Edit Category</button>
+                        <button type="submit" name="btnSubmit" class="btn btn-outline-primary rounded-pill" data-mdb-ripple-color="dark">Edit Department</button>
                     </div>
                 </div>
             </div>

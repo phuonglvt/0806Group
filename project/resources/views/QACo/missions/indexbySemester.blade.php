@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.QACo')
 
 @section('custom-css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /><!-- CSS -->
@@ -27,7 +27,7 @@
 
         <div class="card">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">List Mission By Department : {{ $department->name  }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">List Mission By Semester : {{ $semester->name }}</h6>
             </div>
             <div class="card-body">
                 @include('admin.missions._list')
@@ -46,7 +46,7 @@
             $('#users-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url('/admin/missions/department/'.$department->id.'/dt-row-data') }}',
+                ajax: '{{ url('/admin/missions/semester/'.$semester->id.'/dt-row-data') }}',
                 columns: [{
                         data: 'name',
                         name: 'name',
