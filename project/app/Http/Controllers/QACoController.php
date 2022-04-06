@@ -24,10 +24,11 @@ class QACoController extends Controller
     {
         $users = User::all();
         $departments = Department::all();
-        return view('QACo.sendReport', compact(['departments','users']));
+    
+        return view('QACo.sendReport', compact('departments','users'));
     }
     public function detail()
     {
-        return view('QACo.detailDepartment');
+        return view('detailDepartment');
     }
 }

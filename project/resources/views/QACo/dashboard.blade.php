@@ -19,7 +19,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard QA Manager</h1>
+            <h1 class="m-0 text-dark">Dashboard QA Coordinator</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -48,7 +48,7 @@
               <div class="icon">
               <i class="fa fa-light fa-link"></i>
               </div>
-              <a href="{{ route('admin.category.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('QACo.dashboard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -63,7 +63,7 @@
               <div class="icon">
               <i class="fa fa-solid fa-building"></i>
               </div>
-              <a href="{{ route('admin.department.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('QACo.dashboard') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -78,7 +78,7 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="{{route('admin.account.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{route('QACo.dashboard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -93,7 +93,7 @@
               <div class="icon">
               <i class="fa fa-light fa-bars-progress"></i>              
             </div>
-              <a href="{{route('admin.missions.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{route('QACo.dashboard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

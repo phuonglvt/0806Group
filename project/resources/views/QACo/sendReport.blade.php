@@ -44,8 +44,7 @@
                 @foreach($users as $User)
                 <option value="{{$User -> name}}">{{$User -> name}}</option>
                 @endforeach
-            </select>    
-
+            </select>  
         </div>
         <!-- /.row (main row) -->
          <!-- TO DO List -->

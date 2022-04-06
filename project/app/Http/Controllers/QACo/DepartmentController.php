@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\QAManager;
+namespace App\Http\Controllers\QACo;
 
 use App\Models\Department;
 use App\Http\Controllers\Controller;

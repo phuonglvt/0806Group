@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\QAManager;
+namespace App\Http\Controllers\QACo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

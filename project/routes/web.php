@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
@@ -122,28 +121,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/missions/semester/{id}', [MissionController::class, 'listMissionBySemester'])->name('admin.missions.semester.index');
         Route::get('/missions/semester/{id}/dt-row-data', [MissionController::class, 'getDtRowDataBySemester']);
     });
-});
-Route::get('/HomeQACo', [QACoController::class, 'index'])->name('dashboard');
-Route::get('/dashboard',function () {
-    return redirect()->route('dashboard');
-});
-
-Route::get('/HomeQACo/sendReport', [QaManagerController::class, 'sendReport'])->name('sendReport');
-Route::get('/sendReport',function () {
-    return redirect()->route('sendReport');
-});
-
-Route::get('/HomeQACo/detailDepartment', [QaManagerController::class, 'detail'])->name('detailDepartment');
-Route::get('/detailDepartment',function () {
-    return redirect()->route('detailDepartment');
-
-Route::get('/Report', function(){
-    return view('/QACo/sendReport');
-});
-Route::post('/Report', function(){
-    $data = request(['department','user','reason']);
-    \Illuminate\Support\Facades\Mail::to('phungdat020501@gmail.com')
-    -> send(new \App\Mail\Report($data));
-    return redirect ('/HomeQACo/sendReport')
-    -> with('flash', 'Report sent successfully');
 });
