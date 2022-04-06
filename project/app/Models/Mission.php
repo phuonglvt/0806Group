@@ -20,10 +20,6 @@ class Mission extends Model
         'semester_id'
     ];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -31,5 +27,9 @@ class Mission extends Model
     public function semester()
     {
         return $this->belongsTo(Semester::class);
+    }
+
+    public function ideas(){
+        return $this->hasMany(Idea::class);
     }
 }
