@@ -7,6 +7,8 @@ use App\Models\Attachment;
 use App\Models\Idea;
 use App\Models\Mission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Events\ViewIdeaEvent;
 
 class IdeaController extends Controller
 {
@@ -31,8 +33,13 @@ class IdeaController extends Controller
         $ideas = Idea::withCount('comments')->paginate(5);
         return view(
             'ideas.index',
-            compact(['missions', 'ideas'])
+            compact(['missions', 'ideas', 'found_ideas_count', 'found_ideas', 'categories'])
         );
+    }
+
+    //Search by key function
+    protected function searchByKey(Request $request) {
+        
     }
 
     public function store(IdeaStoreRequest $request)
