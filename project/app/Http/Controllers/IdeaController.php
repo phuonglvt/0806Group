@@ -9,6 +9,11 @@ use App\Models\Mission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Events\ViewIdeaEvent;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Contracts\Database\Query\Builder as DatabaseQueryBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Storage;
+use PHPUnit\TextUI\CliArguments\Builder as CliArgumentsBuilder;
 
 class IdeaController extends Controller
 {
@@ -29,17 +34,61 @@ class IdeaController extends Controller
      */
     public function index(Request $request)
     {
-        $missions = Mission::all();
-        $ideas = Idea::withCount('comments')->paginate(5);
+        $missions = Mission::where('end_at', '>=', now())->get();
+        $all_missions = Mission::get();
+        //Search by key
+        $user_input = $request->input('search');
+        //Search by mission
+        $selected_mission_id = $request->mission_id;
+        if ($selected_mission_id != 0) {
+            $ideas = Idea::query()
+                ->where('mission_id', $selected_mission_id)
+                ->where(function ($query) use ($user_input) {
+                    $query->where('title', 'LIKE', "%{$user_input}%")->orWhere('content', 'LIKE', "%{$user_input}%");
+                });
+        } else {
+            $ideas = Idea::query()
+                ->where('title', 'LIKE', "%{$user_input}%")
+                ->orWhere('content', 'LIKE', "%{$user_input}%");
+        }
+        //Search by condition:
+        $selected_filter = $request->filter;
+        switch ($selected_filter) {
+                //Search ideas with order by number of likes
+            case "likes":
+                $ideas = $ideas
+                    ->joinReactionCounterOfType('Like')
+                    ->orderBy('reaction_like_count', 'desc')
+                    ->paginate(4);
+                break;
+                //Search ideas with order by number of dislikes
+            case "dislikes":
+                $ideas = $ideas
+                    ->joinReactionCounterOfType('Dislike')
+                    ->orderBy('reaction_dislike_count', 'desc')
+                    ->paginate(4);
+                break;
+                //Search ideas with order by number of views
+            case "views":
+                $ideas = $ideas->orderBy('view_count', 'desc')->paginate(4);
+                break;
+                //Search ideas with order by comments
+            case "comments":
+                $ideas = $ideas->withCount('comments')->orderBy('comments_count', 'desc')->paginate(4);
+                break;
+                //Search ideas with order by posted time
+            case "recently":
+                $ideas = $ideas->withCount('comments')->orderBy('created_at', 'desc')->paginate(4);
+                break;
+            default:
+                $ideas = $ideas->withCount('comments')->paginate(4);
+                break;
+        }
+        //
         return view(
             'ideas.index',
-            compact(['missions', 'ideas', 'found_ideas_count', 'found_ideas', 'categories'])
+            compact(['missions', 'ideas', 'all_missions'])
         );
-    }
-
-    //Search by key function
-    protected function searchByKey(Request $request) {
-        
     }
 
     public function store(IdeaStoreRequest $request)
@@ -59,6 +108,9 @@ class IdeaController extends Controller
                 ]);
             }
         }
+        $Coordinator_role = Role::where('name', '=', Role::ROLE_QA_Coordinator)->first()->id;
+        $users = User::where('role_id', $Coordinator_role)->get();
+        SendEmailCreateIdea::dispatch($idea, $users)->delay(now());
         return redirect()->back()->with(['class' => 'success', 'message' => 'Create Idea success']);
     }
 
@@ -66,21 +118,57 @@ class IdeaController extends Controller
     {
         //find id to update
         $idea = Idea::findOrFail($id);
-        return view('', compact('idea'));
+        return view('ideas.edit', compact('idea'));
     }
 
-    public function updateIdea(IdeaStoreRequest $request, $id)
+
+    public function update(IdeaUpdateRequest $request, $id)
     {
-        $dataCategory = Idea::findOrFail($id);
-        $data = $request->all();
-        $dataCategory->update($data);
-        return redirect('');
+        $idea = Idea::findOrFail($id);
+
+        if ($idea->user->id != auth()->user()->id) abort(404);
+
+        if ($request->hasFile('files')) {
+            $files = $request->file('files');
+            foreach ($files as $file) {
+                $custom_file_name = time() . '-' . $file->getClientOriginalName();
+                $filename = $file->storeAs('public/idea/' . $idea->id, $custom_file_name);
+                Attachment::create([
+                    'name' => $file->getClientOriginalName(),
+                    'direction' => 'public/idea/' . $idea->id . '/' . $custom_file_name,
+                    'idea_id' => $idea->id,
+                ]);
+            }
+        }
+        $idea->update([
+            'content' => $request->content
+        ]);
+        return redirect()->back()->with(['class' => 'success', 'message' => 'Update success']);
     }
 
     public function deleteIdea($id)
     {
-        $data = Idea::findOrFail($id);
-        $data->delete();
-        return redirect('')->with('flash_message', 'Category deleted!');
+        $idea = Idea::findOrFail($id);
+        //Delete all comments beloging to idea
+        $comments = Comment::where('idea_id', $id);
+        $comments->delete();
+        //Delete all attached files beloging to idea
+        //in the public folder
+        $directory = 'public/idea/' . $id;
+        Storage::deleteDirectory($directory);
+        //in database
+        $attached_files = Attachment::where('idea_id', $id);
+        $attached_files->delete();
+        $idea->delete();
+        return redirect()->route('ideas.index')->with(['class' => 'success', 'message' => 'Your idea is deleted']);
+    }
+
+    public function deleteAttachment($id)
+    {
+        $attached_file = Attachment::find($id);
+        $directory = $attached_file->direction;
+        Storage::delete($directory); 
+        $attached_file->delete();
+        return redirect()->back()->with(['class' => 'success', 'message' => 'File is deleted']);
     }
 }

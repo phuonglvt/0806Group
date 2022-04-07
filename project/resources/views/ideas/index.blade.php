@@ -2,92 +2,101 @@
 
 @section('title', 'Ideas')
 
+@section('custom-css')
+<style>
+    .entry-content .gallery {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+    }
+
+    .activity__list__header a {
+        color: #222;
+        font-weight: 600;
+    }
+
+    .activity__list__footer {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        padding: 13px 8px 0;
+        color: #999;
+        border-top: 1px dotted #ccc;
+    }
+
+    .activity__list__footer a {
+        color: inherit;
+    }
+
+    .activity__list__footer a+a {
+        margin-left: 15px;
+    }
+
+    .activity__list__footer i {
+        margin-right: 8px;
+    }
+
+    .activity__list__footer a:hover {
+        color: #222;
+    }
+
+    .activity__list__footer span {
+        margin-left: auto;
+    }
+
+    .panel-activity__list>li+li {
+        margin-top: 51px;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        background-color: #f5f5f5;
+    }
+</style>
+@endsection
+
 @section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div>
+                <h4 class="title d-inline">ALL IDEAS</h4>
+                @include('ideas.create')
+            </div>
+            <div class="my-lg-3">
+                @foreach ($ideas as $idea)
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5>{{ $idea->title }}</h5>
+                        <small class="text-muted">
+                            Post by: {{ auth()->user()->hasRole('staff')? 'Anonymous': $idea->user->name }} -
+                            {{ $idea->created_at->diffForHumans() }}
+                        </small>
+                        <div class="">
+                            <p>
+                                {{ substr($idea->content, 0, 200) }}...
+                            </p>
+                        </div>
+                        <div class="activity__list__footer">
 
-    <head>
-        <style>
-            .entry-content .gallery {
-                margin: 0;
-                list-style: none;
-                padding: 0;
-            }
-
-            .activity__list__header a {
-                color: #222;
-                font-weight: 600;
-            }
-
-            .activity__list__footer {
-                display: -ms-flexbox;
-                display: -webkit-box;
-                display: flex;
-                margin-top: 23px;
-                margin-left: 43px;
-                padding: 13px 8px 0;
-                color: #999;
-                border-top: 1px dotted #ccc;
-            }
-
-            .activity__list__footer a {
-                color: inherit;
-            }
-
-            .activity__list__footer a+a {
-                margin-left: 15px;
-            }
-
-            .activity__list__footer i {
-                margin-right: 8px;
-            }
-
-            .activity__list__footer a:hover {
-                color: #222;
-            }
-
-            .activity__list__footer span {
-                margin-left: auto;
-            }
-
-            .panel-activity__list>li+li {
-                margin-top: 51px;
-            }
-
-        </style>
-    </head>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div>
-                    <h4 class="title d-inline">LASTEST IDEA</h4>
-                    @include('ideas.create')
-                </div>
-                <div class="my-lg-3">
-                    @foreach ($ideas as $idea)
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <div class="activity__list__header">
-                                    <strong>{{ $idea->title }}</strong>
-                                </div>
-                                <div class="activity__list__body entry-content">
-                                    <p>
-                                        {{ $idea->content }}
-                                    </p>
-                                </div>
-                                <div class="activity__list__footer">
-                                    <a href="#"> <i class="fa fa-thumbs-up"></i>123</a>
-                                    <a href="#"> <i class="fa fa-thumbs-down"></i>123</a>
-                                    <a href="#"> <i class="fa fa-comments"></i>{{ $idea->comments_count }}</a>
-                                    <span> <i class="fa fa-clock"></i>{{ $idea->created_at }}</span>
-                                </div>
-                            </div>
+                            @livewire('react-component', [
+                            'model' => $idea
+                            ])
+                            <i class=" fa fa-solid fa-eye" style="padding: 6px 5px 0px 18px;"></i> {{ $idea->view_count }}
+                            {{-- <span href="#"> <i class="fa fa-comments"></i>{{ $idea->comments_count }}</span> --}}
+                            <span><button class="btn btn-success"><a onclick="window.location.href='{{ url('/ideas/' . $idea->id) }}'">See
+                                    more</a></button></span>
                         </div>
                     @endforeach
                     {{ $ideas->links() }}
                 </div>
+                @endforeach
+                <!-- Paginate -->
+                <div style="padding: 20px 0px;"> {{ $ideas->links() }} </div>
             </div>
-            <div class="col-md-3">
-                @include('ideas.search')
-            </div>
+        </div>
+        <div class="col-md-3">
+            @include('ideas.search')
         </div>
     </div>
     <!-- jQuery library -->
