@@ -30,7 +30,7 @@ class MyTestMail extends Mailable
     public function build()
     {
         $this->subject('Mail from QA Coordinator')
-            ->view('admin.emails.sample-mail');
+            ->view('emails.sample-mail');
 
         return $this;
     }
