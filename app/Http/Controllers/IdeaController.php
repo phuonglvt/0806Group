@@ -116,7 +116,7 @@ class IdeaController extends Controller
                 $filename = $file->storeAs('public/idea/' . $idea->id, $custom_file_name);
                 Attachment::create([
                     'name' => $file->getClientOriginalName(),
-                    'direction' => 'storage/idea/' . $idea->id . '/' . $custom_file_name,
+                    'direction' => 'public/storage/idea/' . $idea->id . '/' . $custom_file_name,
                     'idea_id' => $idea->id,
                 ]);
             }

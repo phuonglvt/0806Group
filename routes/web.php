@@ -126,6 +126,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/listComment/{id}',[CommentController::class,'listCommentByIdea'])->name('admin.comments.listComment.index');
             Route::get('/listComment/{id}/dt-row-data',[CommentController::class,'getDtRowDataByIdea']);
         });
+       
 
         //Mission
         Route::get('/missions/', [MissionController::class, 'index'])->name('admin.missions.index');
@@ -144,5 +145,6 @@ Route::group(['middleware' => 'auth'], function () {
         
     });
     Route::get('/zip', [ZipController::class,'zipFile']);
+    Route::resource('zipfiles/attachment/zipFile', 'ZipController');
    
 });
