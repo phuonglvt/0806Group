@@ -96,27 +96,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/update/{id}', [AccountController::class, 'edit'])->name('admin.account.update');
             Route::post('/update/{id}', [AccountController::class, 'update'])->name('admin.account.store');
             Route::get('/ban/{id}/{status_code}',[AccountController::class,'banAccount'])->name('admin.account.ban');
-            Route::get('send-mail', function () {
-
-                // Email data details
-                $details = [
-                    'title' => 'Email to Multiple Users',
-                    'body' => 'This is sample content we have added for this test mail sending to multiple users.'
-                ];
-            
-                // Email to users
-                $users = [
-                    "phungdat020501@gmail.com",
-                    "thedosu2001@gmail.com"
-                ];
-            
-                foreach ($users as $user) { // sending mail to users.
-            
-                    Mail::to($user)->send(new \App\Mail\MyTestMail($details));
-                }
-            
-                dd("Email is Sent, please check your inbox.");
-            });
         });
 
         //Department
@@ -166,7 +145,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/missions/semester/{id}/dt-row-data', [MissionController::class, 'getDtRowDataBySemester']);
         
     });
-    Route::get('/zip', [ZipController::class,'zipFile']);
+    Route::post('/zip', [ZipController::class,'zipFile']);
+    Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
+    Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
+   
 
    
 });
