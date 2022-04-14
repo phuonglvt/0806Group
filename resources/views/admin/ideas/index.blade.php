@@ -26,7 +26,7 @@
     <div class="card">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">List Ideas</h6>
-            <a href="" class="btn btn-primary">Download Attachment</a>
+                <button class="btn btn-primary" onclick="">Download Attachment</button>
         </div>
     <div class="card-body">
             <table id="users-table" class="table table-responsive" style="width:100%">

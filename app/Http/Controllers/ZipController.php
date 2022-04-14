@@ -26,15 +26,18 @@ class ZipController extends Controller
         // }
         // return response()->download(public_path($fileName));
         $path = public_path();
+        
         if($zip->open(public_path($fileName),ZipArchive::CREATE)===true)
         {
-            $file = File::files(public_path('storage\idea\5'));
+            
+            $file = File::files(public_path('storage\idea\10'));
             foreach($file as $key => $value){
                 $relativeNameInZipFile = basename ($value); 
                 $zip->addFile($value,$relativeNameInZipFile);
             }
-            $zip->close();
+            $zip->close(); 
         }
         return response()->download(public_path($fileName));
     }
 }
+

@@ -71,7 +71,8 @@ class AccountController extends Controller
                         '' . csrf_field() .
                         '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this account ?\')"><i class="fa-solid fa-trash" title="Delete Account"></i></button>
                         </form>';
-                }if (auth()->user()->hasRole(Role::ROLE_ADMIN)) {
+                }
+                if (auth()->user()->hasRole(Role::ROLE_QA_Coordinator)) {
                     $res .= ' <a class="btn btn-primary btn-sm rounded-pill" href="' . route("send.email") . '"><i class="fa-solid fa-envelope" title="Send Mail"></i></a>';
                 }
                 return $res;
