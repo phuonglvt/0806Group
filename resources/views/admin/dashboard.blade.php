@@ -1,10 +1,15 @@
 @extends('layouts.admin')
-
+@section('custom-css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /><!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+<!-- Default theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <title>Dashboard</title>
+    <link rel="icon" href="https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/favicon/1640228920/favicon.ico">
+@endsection
 @section('content')
 <!-- Content Header (Page header) -->
-<head>
-    <title>Dashboard</title>
-</head>    
+
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
