@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Idea;
 use App\Models\User;
@@ -68,7 +69,7 @@ class IdeasController extends Controller
     }
 
     // List idea by mission
-     public function listIdeaByMission($id)
+    public function listIdeaByMission($id)
     {
         $missions = Mission::find($id);
         if (!$missions) abort(404); //check missions exits
@@ -96,6 +97,7 @@ class IdeasController extends Controller
         return redirect()->back()->with('success', 'Ideas deleted!');
 
     }
+
     public function getDtRowDataByMission($id, Request $request)
     {
         $missions = Idea::where('mission_id', $id)->get();
