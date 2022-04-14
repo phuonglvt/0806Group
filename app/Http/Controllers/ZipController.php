@@ -30,7 +30,7 @@ class ZipController extends Controller
         if($zip->open(public_path($fileName),ZipArchive::CREATE)===true)
         {
             
-            $file = File::files(public_path('storage\idea\10'));
+            $file = File::files(public_path('storage\idea'));
             foreach($file as $key => $value){
                 $relativeNameInZipFile = basename ($value); 
                 $zip->addFile($value,$relativeNameInZipFile);

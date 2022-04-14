@@ -68,8 +68,6 @@
                                                 @error('subject')
                                                     <span class="text-danger"> {{ $message }} </span>
                                                 @enderror
-                                            </div>
-    
 
 					<div class="wrap-input100 validate-input" data-validate = "Message is required">
 						<textarea class="input100" name="content" placeholder="Message"></textarea>
@@ -78,7 +76,6 @@
                                            <span class="text-danger"> {{ $message }} </span>
                                          @enderror
                                         </div>
-                
 					<div class="container-contact100-form-btn">
 						<button type="submit" class="contact100-form-btn">
 							Send
@@ -118,4 +115,10 @@
 </script>
 
 </body>
+
 </html>
+
+</html>
+
+</html> 
+
