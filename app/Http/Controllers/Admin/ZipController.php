@@ -13,7 +13,7 @@ class ZipController extends Controller
         $fileName = 'myzip.zip';
         if($zip->open(public_path($fileName),ZipArchive::CREATE)===true)
         {
-            $file = File::files(public_path(''));
+            $file = File::files(public_path('storage/idea'));
             foreach($file as $key => $value){
                 $relativeNameInZipFile = basename ($value); 
                 $zip->addFile($value,$relativeNameInZipFile);

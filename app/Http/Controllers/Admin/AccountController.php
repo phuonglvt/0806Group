@@ -75,6 +75,9 @@ class AccountController extends Controller
                         '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this account ?\')"><i class="fa-solid fa-trash" title="Delete Account"></i></button>
                         </form>';
                 }
+                if (auth()->user()->hasRole(Role::ROLE_ADMIN)) {
+                    $res .= ' <a class="btn btn-primary btn-sm rounded-pill" href="' . route("send.email") . '"><i class="fa-solid fa-envelope" title="Send Mail"></i></a>';
+                }
                 return $res;
             })
             ->rawColumns(['action'])
@@ -85,6 +88,28 @@ class AccountController extends Controller
             ])
             ->make(true);
     }
+    public function sendMail()
+    {
+        $details = [
+            'title' => 'Email to Multiple Users',
+            'body' => 'This is sample content we have added for this test mail sending to multiple users.'
+        ];
+    
+        // Email to users
+        $users = [
+            "phungdat020501@gmail.com",
+            "thedosu2001@gmail.com"
+        ];
+    
+        foreach ($users as $user) { // sending mail to users.
+    
+            Mail::to($user)->send(new \App\Mail\MyTestMail($details));
+        }
+    
+        dd("Email is Sent, please check your inbox.");
+        return redirect('admin/account');
+    }
+
 
     public function delete($id)
     {
