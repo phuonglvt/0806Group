@@ -14,6 +14,7 @@ use App\Jobs\SendEmailCreateAccount;
 use Illuminate\Support\Str;
 use Session;
 use App\Http\Requests\AccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
 use DB;
 
 class AccountController extends Controller
@@ -122,7 +123,7 @@ class AccountController extends Controller
         return view('admin.account.edit', compact('user', 'role_id', 'departments'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateAccountRequest $request, $id)
     {
         $user = User::find($id);
         $name = $request->name;
@@ -134,7 +135,7 @@ class AccountController extends Controller
             'department_id' => $department_id
         ]);
         $user->save();
-        return redirect('admin/account');
+        return redirect('admin/account') -> with('success','Updated account successfully');
     }
 
     public function listAccountByDepartment($id)
