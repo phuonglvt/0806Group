@@ -4,15 +4,19 @@
 
 @section('content')
 @include('_shared._header')
-<div class="card text-white bg-secondary my-5 py-3 text-center">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<div class="card text-white bg-info my-5 py-3 text-center">
     <div class="card-body">
-        <p class="text-white m-0" style="font-family: Georgia, serif;">
+        <button type="button" class="btn btn-info m-0" data-toggle="collapse" data-target="#demo" style="font-family: Georgia, serif;">
             More information about University of Greenwich
-        </p>
-        <i class="fas fa-arrow-down"></i>
+
+            <i class="fas fa-arrow-down"></i>
+        </button>
     </div>
 </div>
-<div class="container px-4 px-lg-5">
+{{-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button> --}}
+<div class="container collapse px-4 px-lg-5" id="demo">
     <!-- Heading Row-->
     <div class="row align-items-center my-5">
         <div class="mb-5">
