@@ -41,6 +41,7 @@
                         <th class="col-1">View</th>
                         <th class="col-1">Comments</th>
                         <th class="col-1">Mission</th>
+                        <th class="col-1">Action</th>
                     </tr>
                 </thead>
             </table>
@@ -90,6 +91,10 @@
                 },
                 {
                     data: 'mission',
+                },
+                {
+                    data: 'action',
+                    name: 'action',
                 }
             ]
         });
