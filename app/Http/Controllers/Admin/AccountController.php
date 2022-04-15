@@ -116,7 +116,7 @@ class AccountController extends Controller
         $data = User::findOrFail($id);
         $data->delete();
         Session::flash('success_msg', 'Account deleted successfully!');
-        return redirect()->back()->with('flash_message', 'User deleted!');
+        return redirect()->back()->with('success', 'User deleted!');
     }
 
     public function create(AccountRequest $request)

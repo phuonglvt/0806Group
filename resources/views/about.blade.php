@@ -16,7 +16,7 @@
   }
 
   .column {
-    float: left;
+    align-items: center;
     width: 33.3%;
     margin-bottom: 16px;
     padding: 0 8px;
@@ -38,7 +38,7 @@
     padding: 5px 16px;
   }
 
-  .container::after,
+  
   .row::after {
     content: "";
     clear: both;
@@ -68,13 +68,15 @@
       display: block;
     }
   }
+
 </style>
 @endsection
+
 @section('content')
 <div class="about-section">
-  <img src="https://continuumsecurityconsultants.com/wp-content/uploads/2021/11/team.png" class="text-align:center;" width="600" height="150">
+  <img src="https://continuumsecurityconsultants.com/wp-content/uploads/2021/11/team.png" class="img-fluid" width="600" height="150">
   <div class="row">
-    <div class="column">
+    <div class="column left">
       <div class="card border-danger">
         <div class="container">
           <img src="{{asset('/images/thien_vuong.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -85,7 +87,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column left">
       <div class="card border-warning">
         <div class="container">
           <img src="{{asset('/images/tan_toan.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -96,7 +98,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column left">
       <div class="card border-success">
         <div class="container">
           <img src="{{asset('/images/thanh_nhan.png')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -107,7 +109,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column left">
       <div class="card border-warning">
         <div class="container">
           <img src="{{asset('/images/tat_dat.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -118,7 +120,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column left">
       <div class="card border-success">
         <div class="container ">
           <img src="{{asset('/images/khoi_nguyen.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -129,7 +131,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column left">
       <div class="card border-danger">
         <div class="container">
           <img src="{{asset('/images/van_huy.png')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -140,9 +142,7 @@
       </div>
     </div>
   </div>
-
-  <div class="column">
-  </div>
+  
 
   <div class="column">
     <div class="card border-success">
@@ -155,6 +155,6 @@
     </div>
   </div>
 
-  <div class="column">
-  </div>
+</div>
+
   @endsection
