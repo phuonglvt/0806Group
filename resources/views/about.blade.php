@@ -16,7 +16,7 @@
   }
 
   .column {
-    align-items: center;
+    /* align-items: center; */
     width: 33.3%;
     margin-bottom: 16px;
     padding: 0 8px;
@@ -68,6 +68,11 @@
       display: block;
     }
   }
+  /* .center-align{
+    width: 33.3%;
+    margin-left: 33.5%;
+    display: block;
+  } */
 
 </style>
 @endsection
@@ -76,7 +81,7 @@
 <div class="about-section">
   <img src="https://continuumsecurityconsultants.com/wp-content/uploads/2021/11/team.png" class="img-fluid" width="600" height="150">
   <div class="row">
-    <div class="column left">
+    {{-- <div class="column left"> --}}
       <div class="card border-danger">
         <div class="container">
           <img src="{{asset('/images/thien_vuong.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -84,7 +89,7 @@
           <p class="title">Product Owner</p>
           <p class="text">phuonglvtgcd191122@fpt.edu.vn</p>
         </div>
-      </div>
+      {{-- </div> --}}
     </div>
 
     <div class="column left">
@@ -141,10 +146,9 @@
         </div>
       </div>
     </div>
-  </div>
   
 
-  <div class="column">
+  <div class="column left">
     <div class="card border-success">
       <div class="container ">
         <img src="{{asset('/images/hiep_duc.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -154,7 +158,7 @@
       </div>
     </div>
   </div>
-
+</div>
 </div>
 
   @endsection
