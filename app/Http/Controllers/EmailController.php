@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Mail;
 
 class EmailController extends Controller
 {
-    public function create()
+    public function create($id)
     {
-        return view('email');
+        $user = User::find($id);
+        return view('email', compact('user'));
     }
 
-    public function sendEmail(Request $request)
+    public function sendEmail(Request $request, $id)
     {
+        $user = User::find($id);
         $request->validate([
           'email' => 'required|email',
           'subject' => 'required',
@@ -23,8 +26,8 @@ class EmailController extends Controller
 
         $data = [
           'subject' => $request->subject,
-          'name' => $request->name,
-          'email' => $request->email,
+          'name' => $user->name,
+          'email' => $user->email,
           'content' => $request->content
         ];
 

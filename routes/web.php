@@ -22,6 +22,7 @@ use App\Http\Controllers\TermOfUseController;
 use App\Listeners\SendEmailAfterClickButton;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------

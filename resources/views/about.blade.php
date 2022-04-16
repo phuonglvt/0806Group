@@ -81,7 +81,7 @@
 <div class="about-section">
   <img src="https://continuumsecurityconsultants.com/wp-content/uploads/2021/11/team.png" class="img-fluid" width="600" height="150">
   <div class="row">
-    {{-- <div class="column left"> --}}
+    <div class="column left">
       <div class="card border-danger">
         <div class="container">
           <img src="{{asset('/images/thien_vuong.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -89,7 +89,7 @@
           <p class="title">Product Owner</p>
           <p class="text">phuonglvtgcd191122@fpt.edu.vn</p>
         </div>
-      {{-- </div> --}}
+      </div>
     </div>
 
     <div class="column left">
@@ -97,7 +97,7 @@
         <div class="container">
           <img src="{{asset('/images/tan_toan.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
           <h2 class="h2">Tan Toan</h2>
-          <p class="title">Scrum Master</p>
+          <p class="title">Developer</p>
           <p class="text">toanlntgcd191338@fpt.edu.vn</p>
         </div>
       </div>
@@ -119,7 +119,7 @@
         <div class="container">
           <img src="{{asset('/images/tat_dat.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
           <h2 class="h2">Tat Dat</h2>
-          <p class="title">Developer</p>
+          <p class="title">Scrum Master</p>
           <p class="text">datptgcd191189@fpt.edu.vn</p>
         </div>
       </div>
@@ -146,18 +146,6 @@
         </div>
       </div>
     </div>
-  
-
-  <div class="column left">
-    <div class="card border-success">
-      <div class="container ">
-        <img src="{{asset('/images/hiep_duc.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-        <h2 class="h2">Hiep Duc</h2>
-        <p class="title">Developer</p>
-        <p class="text">ducphgcd191221@fpt.edu.vn</p>
-      </div>
-    </div>
-  </div>
 </div>
 </div>
 
