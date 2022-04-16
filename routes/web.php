@@ -22,6 +22,7 @@ use App\Http\Controllers\TermOfUseController;
 use App\Listeners\SendEmailAfterClickButton;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,6 +148,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::get('/zip',[ZipController::class,'zipFile'])->name('create.zip');
     // Route::post('/zip', [ZipController::class,'zipFile'])->name('create.zip');
-    Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
-    Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
+    Route::get('/email/{id}', [EmailController::class, 'create'])->name('create.mail');
+    Route::post('/email/{id}', [EmailController::class, 'sendEmail'])->name('send.email');
 });

@@ -76,7 +76,7 @@ class AccountController extends Controller
                         </form>';
                 }
                 if (auth()->user()->hasRole(Role::ROLE_ADMIN)) {
-                    $res .= ' <a class="btn btn-primary btn-sm rounded-pill" href="' . route("send.email") . '"><i class="fa-solid fa-envelope" title="Send Mail"></i></a>';
+                    $res .= ' <a class="btn btn-primary btn-sm rounded-pill" href="' . route('send.email', $data->id) . '"><i class="fa-solid fa-envelope" title="Send Mail"></i></a>';
                 }
                 return $res;
             })
@@ -132,6 +132,7 @@ class AccountController extends Controller
             'name' => $name,
             'email' => $email,
             'role_id' => $role_id,
+            'is_lock' => 1,
             'department_id' => $department_id,
             'password' => Hash::make($password),
             'remember_token' => $token
