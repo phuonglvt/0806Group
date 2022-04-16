@@ -33,6 +33,7 @@ class SemesterController extends Controller
                 return $data->missions->count();
             })
             ->editColumn('action', function ($data) {
+                $res ="";
                 if (auth()->user()->hasRole('admin')) {
                 return '
                 <a class="btn btn-warning btn-sm rounded-pill" href="'.route("admin.semester.update",$data->id).'"><i class="fa-solid fa-pen-to-square" title="Edit Semester"></i></a>
@@ -42,6 +43,10 @@ class SemesterController extends Controller
                     '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this department ?\')"><i class="fa-solid fa-trash" title="Delete Semester"></i></button>
                 </form>
                 ';
+                }
+                if (auth()->user()->hasRole('coordinator')) {
+                    $res .= ' <a class="btn btn-danger btn-sm rounded-pill" href="' . route("zip-download") . '"><i class="fas fa-file-download
+                    " title="Send Mail"></i></a>';
                 }
                 return '';
             })
