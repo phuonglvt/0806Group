@@ -149,7 +149,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('zip-download', [ZipController::class,'zipDownload'])->name('zip-download');
     //Route::get('/zipAttachment',[ZipController::class,'zipFile']);
     // Route::post('/zip', [ZipController::class,'zipFile'])->name('create.zip');
-    Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
-    Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
+    Route::get('/email/{id}', [App\Http\Controllers\EmailController::class, 'create']);
+    Route::post('/email/{id}', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
     Route::get('users/export/', [UserController::class, 'export']);
 });
