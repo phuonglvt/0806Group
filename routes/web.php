@@ -13,7 +13,8 @@ use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\MissionController;
 use App\Http\Controllers\Admin\IdeasController;
 use App\Http\Controllers\Admin\ComentController;
-use App\Http\Controllers\ZipController;
+use App\Http\Controllers\Admin\ExportController;
+use App\Http\Controllers\Admin\ZipController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrivacyController;
@@ -105,13 +106,15 @@ Route::group(['middleware' => 'auth'], function () {
         });
         
         //Semester
-        Route::group(['prefix' => 'semester'], function () {
+        Route::group(['prefix' => 'semester','middleware' => 'role:admin,manager,coordinator'], function () {
             Route::get('/', [SemesterController::class, 'indexSemester'])->name('admin.semester.index');
             Route::get('/dt-row-data', [SemesterController::class, 'getDtRowData']);
             Route::post('/createSmt', [SemesterController::class, 'create'])->name('admin.semester.createSmt')->middleware('role:admin');
             Route::delete('/delete/{id}', [SemesterController::class, 'delete'])->name('admin.semester.delete')->middleware('role:admin');
             Route::get('/update/{id}', [SemesterController::class, 'edit'])->name('admin.semester.update')->middleware('role:admin');
             Route::post('/update/{id}', [SemesterController::class, 'update'])->name('admin.semester.store')->middleware('role:admin');
+            Route::get('{id}/zipdownload', [ZipController::class,'zipDownload'])->name('admin.semester.zip')->middleware('role:admin,manager');
+            Route::get('{id}/csv', [ExportController::class,'export'])->name('admin.semester.csv')->middleware('role:admin,manager');
         });
         
         // Idea Admin
@@ -146,7 +149,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/missions/semester/{id}/dt-row-data', [MissionController::class, 'getDtRowDataBySemester']);
         
     });
-    Route::get('zip-download', [ZipController::class,'zipDownload'])->name('zip-download');
+    
     //Route::get('/zipAttachment',[ZipController::class,'zipFile']);
     // Route::post('/zip', [ZipController::class,'zipFile'])->name('create.zip');
     Route::get('/email/{id}', [App\Http\Controllers\EmailController::class, 'create']);
