@@ -78,14 +78,14 @@ class DatabaseSeeder extends Seeder
             'department_id' => Department::where('name',Department::ACADEMIC)->first()->id,
         ]);
         User::create([
-            'name' => 'Staff Academic',
-            'email' => 'staffacademic@0806.com',
+            'name' => 'Staff Support',
+            'email' => 'staffsupport@0806.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'phone_number' => "",
             'role_id' => Role::where('name',Role::ROLE_STAFF)->first()->id,
-            'department_id' => Department::where('name',Department::ACADEMIC)->first()->id,
+            'department_id' => Department::where('name',Department::SUPPORT)->first()->id,
         ]);
         //seed default staff
         User::factory(10)->create();

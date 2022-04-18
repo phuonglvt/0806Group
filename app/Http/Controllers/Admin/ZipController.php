@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Semester;
+use App\Http\Controllers\Controller;
 use Carbon\Exceptions\Exception;
 use ZipArchive;
 use File;
