@@ -1,3 +1,4 @@
+@if(auth()->user()->hasRole('staff'))
 <button class="btn btn-success d-inline float-end" data-toggle="modal" data-target="#exampleModal">Create Idea</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -92,7 +93,7 @@
         </div>
     </div>
 </div>
-
+@endif
 <script>
     @if ($errors->has('files') || $errors->has('is-agree') || $errors->has('title') || $errors->has('content'))
         var delayInMilliseconds = 1000;
